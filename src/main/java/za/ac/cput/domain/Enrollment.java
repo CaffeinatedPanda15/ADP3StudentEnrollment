@@ -1,29 +1,55 @@
 package za.ac.cput.domain;
 
+import javafx.util.Builder;
+
+import java.util.*;
+
 public class Enrollment {
-    private String StudentId;
-    private String courseId;
-    private String dateEnrollment;
+    private final String studentId;
+    private final String courseId;
+    private final Date dateEnrollment;
 
-    public Enrollment() {
-
+    private Enrollment(Builder builder) {
+        this.studentId = builder.studentId;
+        this.courseId = builder.courseId;
+        this.dateEnrollment = builder.dateEnrollment;
     }
 
-    public Enrollment(String StudentId, String courseId, String dateEnrollment) {
-        this.StudentId = StudentId;
-        this.courseId = courseId;
-        this.dateEnrollment = dateEnrollment;
-    }
 
     public String getStudentId() {
-        return StudentId;
+        return studentId;
     }
 
     public String getCourseId() {
         return courseId;
     }
 
-    public String getDateEnrollment() {
+    public Date getDateEnrollment() {
         return dateEnrollment;
     }
+    public static class Builder {
+        private String studentId;
+        private String courseId;
+        private Date dateEnrollment;
+
+        public Builder setstudentId(String studentId) {
+            this.studentId = studentId;
+            return this;
+        }
+
+        public Builder setcourseId(String courseId) {
+            this.courseId = courseId;
+            return this;
+        }
+
+        public Builder setdateEnrollment(Date dateEnrollment) {
+            this.dateEnrollment = dateEnrollment;
+            return this;
+        }
+
+        public Enrollment build() {
+            return new Enrollment(this);
+
+        }
+    }//end of builder class
 }
