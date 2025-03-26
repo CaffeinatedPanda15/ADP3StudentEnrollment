@@ -1,6 +1,4 @@
-package za.ac.cput.factory;
-
-import za.ac.cput.domain.Enrollment;
+package yourmom.factory;
 
 import java.util.Date;
 

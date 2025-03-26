@@ -1,4 +1,4 @@
-package za.ac.cput.domain;
+package yourmom.domain;
 public class Student {
     private String studentId;
     private String studentName;

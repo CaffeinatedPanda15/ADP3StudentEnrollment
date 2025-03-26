@@ -1,7 +1,5 @@
-package za.ac.cput.repository;
+package yourmom.repository;
 
-import za.ac.cput.domain.Enrollment;
-import za.ac.cput.repository.IRepository;
 import java.util.*;
 
 public class EnrollmentRepository implements IRepository<Enrollment, String> {
