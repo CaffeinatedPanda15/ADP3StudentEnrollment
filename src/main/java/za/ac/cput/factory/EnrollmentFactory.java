@@ -1,5 +1,6 @@
 package za.ac.cput.factory;
 
+import za.ac.cput.domain.Enrollment;
 import java.util.Date;
 
 public class EnrollmentFactory {
