@@ -1,4 +1,4 @@
-package service;
+package za.ac.cput.service;
 
 import java.util.Set;
 

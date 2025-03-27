@@ -1,4 +1,4 @@
-package yourmom.repository;
+package za.ac.cput.repository;
 
 import java.util.*;
 

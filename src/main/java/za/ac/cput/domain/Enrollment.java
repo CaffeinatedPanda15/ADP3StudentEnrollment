@@ -1,4 +1,4 @@
-package yourmom.domain;
+package za.ac.cput.domain;
 
 import java.util.*;
 
