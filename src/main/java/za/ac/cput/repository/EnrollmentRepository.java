@@ -9,7 +9,7 @@ public class EnrollmentRepository implements IRepository<Enrollment, String> {
     private final Set<Enrollment> enrollments = new HashSet<>();
 
     @Override
-    public Enrollment create(String id) {
+    public Enrollment create(Enrollment enrollment) {
         enrollments.add(enrollment);
         return enrollment;
     }
