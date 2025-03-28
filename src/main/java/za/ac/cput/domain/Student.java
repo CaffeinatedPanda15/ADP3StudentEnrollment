@@ -1,9 +1,10 @@
+//Strathmore York Fynn (221547290)
 package za.ac.cput.domain;
 
 public class Student {
-    private String id;
-    private String name;
-    private String email;
+    private final String id;
+    private final String name;
+    private final String email;
 
     private Student(Builder builder) {
         this.id = builder.id;

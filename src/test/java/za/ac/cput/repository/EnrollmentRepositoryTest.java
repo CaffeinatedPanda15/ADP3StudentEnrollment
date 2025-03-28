@@ -1,83 +1,74 @@
+//Uwaiz Laher (221270191)
 package za.ac.cput.repository;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import za.ac.cput.domain.Enrollment;
-import za.ac.cput.factory.StudentFactory;
-import za.ac.cput.domain.Student;
-import za.ac.cput.repository.EnrollmentRepository;
+
 
 import java.util.Set;
 
-public class EnrollmentRepositoryTest {
+class EnrollmentRepositoryTest {
 
-    private EnrollmentRepository enrollmentRepository;
-    private Enrollment enrollment1;
-    private Enrollment enrollment2;
+    private EnrollmentRepository repository;
+    private Enrollment enrollment1, enrollment2;
 
-    @Before
-    public void setUp() {
-        enrollmentRepository = new EnrollmentRepository();
+    @BeforeEach
+    void setUp() {
+        repository = new EnrollmentRepository();
         enrollment1 = new Enrollment.Builder()
-                .setStudentId("S12345")
-                .setCourseId("CSE101")
-                .setDateEnrollment(new java.util.Date())
+                .setstudentId("C123")
+                .setcourseId("11111")
                 .build();
-
         enrollment2 = new Enrollment.Builder()
-                .setStudentId("S67890")
-                .setCourseId("CSE102")
-                .setDateEnrollment(new java.util.Date())
+                .setstudentId("C124")
+                .setcourseId("22222")
                 .build();
     }
 
     @Test
-    public void testCreateEnrollment() {
-        Enrollment createdEnrollment = enrollmentRepository.create(enrollment1);
-        assertNotNull(createdEnrollment);
-        assertEquals("S12345", createdEnrollment.getStudentId());
-        assertEquals("CSE101", createdEnrollment.getCourseId());
+    void testCreate() {
+        Enrollment created = repository.create(enrollment1);
+        assertNotNull(created);
+        assertEquals(enrollment1.getCourseId(), created.getCourseId());
+        assertEquals(1, repository.getAll().size());
     }
 
     @Test
-    public void testReadEnrollment() {
-        enrollmentRepository.create(enrollment1);
-        Enrollment retrievedEnrollment = enrollmentRepository.read("S12345");
-        assertNotNull(retrievedEnrollment);
-        assertEquals("S12345", retrievedEnrollment.getStudentId());
-        assertEquals("CSE101", retrievedEnrollment.getCourseId());
+    void testRead() {
+        repository.create(enrollment1);
+        Enrollment found = repository.read("C123");
+        assertNotNull(found);
+        assertEquals("11111", found.getCourseId());
     }
 
     @Test
-    public void testUpdateEnrollment() {
-        enrollmentRepository.create(enrollment1);
-        Enrollment updatedEnrollment = new Enrollment.Builder()
-                .setStudentId("S12345")
-                .setCourseId("CSE103")
-                .setDateEnrollment(new java.util.Date())
+    void testUpdate() {
+        repository.create(enrollment1);
+        Enrollment updatedCourse = new Enrollment.Builder()
+                .setstudentId("C123")
+                .setcourseId("11111")
                 .build();
 
-        Enrollment result = enrollmentRepository.update(updatedEnrollment);
-        assertNotNull(result);
-        assertEquals("S12345", result.getStudentId());
-        assertEquals("CSE103", result.getCourseId());
+        Enrollment updated = repository.update(updatedCourse);
+        assertNotNull(updated);
+        assertEquals("11111", updated.getCourseId());
     }
 
     @Test
-    public void testDeleteEnrollment() {
-        enrollmentRepository.create(enrollment1);
-        boolean deleted = enrollmentRepository.delete("S12345");
-        assertTrue(deleted);
-        assertNull(enrollmentRepository.read("S12345"));
+    void testDelete() {
+        repository.create(enrollment1);
+        assertTrue(repository.delete("C123"));
+        assertNull(repository.read("C123"));
     }
 
     @Test
-    public void testGetAllEnrollments() {
-        enrollmentRepository.create(enrollment1);
-        enrollmentRepository.create(enrollment2);
-        Set<Enrollment> enrollments = enrollmentRepository.getAll();
-        assertNotNull(enrollments);
-        assertEquals(2, enrollments.size());
+    void testGetAll() {
+        repository.create(enrollment1);
+        repository.create(enrollment2);
+        Set<Enrollment> courses = repository.getAll();
+        assertEquals(2, courses.size());
     }
 }

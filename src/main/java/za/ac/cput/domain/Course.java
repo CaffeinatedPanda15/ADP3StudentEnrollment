@@ -1,3 +1,4 @@
+//Muhammad Siddeeq Rabin (221084096)
 package za.ac.cput.domain;
 
 public class Course {
