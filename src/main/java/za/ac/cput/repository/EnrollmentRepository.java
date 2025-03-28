@@ -2,8 +2,6 @@ package za.ac.cput.repository;
 
 import java.util.*;
 import za.ac.cput.domain.Enrollment;
-import za.ac.cput.factory.EnrollmentFactory;
-import za.ac.cput.repository.IRepository;
 
 public class EnrollmentRepository implements IRepository<Enrollment, String> {
     private final Set<Enrollment> enrollments = new HashSet<>();
